@@ -10,26 +10,16 @@ package lidya080323;
  */
 public class Latihan3 {
     public static void main(String[] args){
-        int max = 0;
-        int num1 = 10;
-        int num2 = 23;
-        int num3 = 5;
+        int number1 = 10, number2 =23, number3 = 5;
+        int max;
         
-        for (num1=1; num1>num2; num1++)
-        {
-            for (num1>num3)
-            {
-                max = num1;
-            }
-        }
-            
-        String  status = "";
-        int grade = 80;
+        System.out.println("Number 1 : "+number1);
+        System.out.println("Number 2 : "+number2);
+        System.out.println("Number 3 : "+number3);
         
-        //mendapatkan status pelajar
-        status = (grade >= 60)?"Passed":"Fail";
-        
-        //print status
-        System.out.println( status );
+        //mencari nilai
+        max = (number2>=number1)?number2:number3;
+        max = (number3>=max)?number3:max;
+        System.out.println("Highest number: "+max);
     }
 }
