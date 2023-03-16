@@ -27,14 +27,18 @@ public class LatihanNilaiTerbesar {
             int max =0;
             if (a > max) {
                 max = a;
-            } else if (b > max){
+            } 
+            if (b > max){
                 max =b;
-            } else if (c > max){
+            }
+            if (c > max){
                 max =c;
             }
             
             System.out.println("Nilai terbesar : "+max);
         } catch (Exception ex){
+            System.out.println("Terjadi kesalahan pada saat membaca masukan.");
+            ex.printStackTrace();
         }
     }
 }
