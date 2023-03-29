@@ -23,7 +23,7 @@ public class Latihan1 {
             str = dataIn.readLine();
             System.out.print("Please enter letter : ");
             letter = dataIn.readLine().charAt(0);
-            System.out.print("8 mod 5 : ");
+            System.out.print("6 mod 5 : ");
             a = Integer.parseInt(dataIn.readLine());
             if (a == 1)
             {
