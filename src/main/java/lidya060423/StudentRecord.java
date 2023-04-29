@@ -2,13 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package lidya050423;
+package lidya060423;
 
 /**
  *
  * @author ASUS F15
  */
 public class StudentRecord {
+    int nilai;
     private String name;
     private String address;
     private int age;
@@ -17,9 +18,29 @@ public class StudentRecord {
     private double scienceGrade;
     private double average;
     
-    // area penulisan kode selanjutnya
-    
     private static int studentCount;
+    
+    public StudentRecord() {
+        studentCount++;
+    }
+    
+    public StudentRecord(String temp){
+        this.name = temp;
+        studentCount++;
+    }
+    
+    public StudentRecord(String name, String address){
+        this.name = name;
+        this.address = address;
+        studentCount++;
+    }
+
+    public StudentRecord(double mGrade, double eGrade, double sGrade){
+        mathGrade = mGrade;
+        englishGrade = eGrade;
+        scienceGrade = sGrade;
+        studentCount++;
+    }
     
     public String getName() {
         return name;

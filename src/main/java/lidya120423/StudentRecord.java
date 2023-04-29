@@ -2,26 +2,60 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package lidya050423;
+package lidya120423;
 
 /**
  *
  * @author ASUS F15
  */
 public class StudentRecord {
-    private String name;
-    private String address;
-    private int age;
-    private double mathGrade;
-    private double englishGrade;
-    private double scienceGrade;
-    private double average;
-    
-    // area penulisan kode selanjutnya
+    int nilai;
+    protected String name;
+    protected String address;
+    protected int age;
+    protected double mathGrade;
+    protected double englishGrade;
+    protected double scienceGrade;
+    protected double average;
     
     private static int studentCount;
     
+    public StudentRecord() {
+        System.out.println("Inside Person:Constructor");
+        name = "";
+        address = "";
+        int age;
+        double englishGrade;
+        studentCount++;
+    }
+    
+    public StudentRecord(String temp){
+        this.name = temp;
+        studentCount++;
+    }
+    
+    public StudentRecord(String name, String address){
+        this.name = name;
+        this.address = address;
+        studentCount++;
+    }
+
+     public StudentRecord(String name, String address, int age){
+        this.name = name;
+        this.address = address;
+        this.age = age;
+        studentCount++;
+    }
+     
+    public StudentRecord(double mGrade, double eGrade, double sGrade){
+        mathGrade = sGrade;
+        englishGrade = eGrade;
+        scienceGrade = sGrade;
+        studentCount++;
+    }
+    
     public String getName() {
+        System.out.println("getName StudentRecord");
         return name;
     }
     public void setName (String name) {
@@ -87,3 +121,4 @@ public class StudentRecord {
         System.out.println("Science Grade : " + average);
     }
 }
+
