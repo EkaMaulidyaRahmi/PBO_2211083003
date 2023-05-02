@@ -17,7 +17,7 @@ public class LatihanBukuAlamatRecord {
         BufferedReader dataIn = new BufferedReader(new InputStreamReader( System.in) );        
         int pil = 0;
         int index = 0;
-        int in;
+        
         while(pil != 5) {
             System.out.println("1. Entri Data");
             System.out.println("2. Hapus Data");
@@ -44,37 +44,47 @@ public class LatihanBukuAlamatRecord {
                     index++;
                     break;
                 case 2:
-                    System.out.print("Data ke : ");
-                    LatihanEntriBukuAlamat hapus = new LatihanEntriBukuAlamat();
-                    hapus.setNama(null);
-                    data[index] = hapus;
-                    hapus.setAlamat(null);
-                    data[index] = hapus;
-                    hapus.setTelp(null);
-                    data[index] = hapus;
-                    hapus.setEmail(null);
-                    data[index] = hapus;
-                    index--;
+                    System.out.print("Indeks data yang akan dihapus : ");
+                    int idx = Integer.parseInt(dataIn.readLine());
+                    if (idx >= 0 && idx < index) {
+                        for (int i = idx; i < index - 1; i++) {
+                            data[i] = data[i + 1];
+                        }
+                        index--;
+                    } else {
+                        System.out.println("Indeks tidak valid");
+                    }
                     break;
                 case 3:
-                    System.out.print("Data ke : ");
-                    LatihanEntriBukuAlamat edit = new LatihanEntriBukuAlamat();
-                    System.out.print("Nama        : ");
-                    edit.setNama(dataIn.readLine());
-                    data[index] = edit;
-                    System.out.print("Alamat      : ");
-                    edit.setAlamat(dataIn.readLine());
-                    data[index] = edit;
-                    System.out.print("Telp        : ");
-                    edit.setTelp(dataIn.readLine());
-                    data[index] = edit;
-                    System.out.print("Email       : ");
-                    edit.setEmail(dataIn.readLine());
-                    data[index] = edit;
-                    index++;
+                    System.out.print("Masukkan indeks data yang akan diedit : ");
+                    int idxEdit = Integer.parseInt(dataIn.readLine());
+                    if (idxEdit >= 0 && idxEdit < index) {
+                        LatihanEntriBukuAlamat dataEdit = data[idxEdit];
+                        System.out.print("Nama        : ");
+                        dataEdit.setNama(dataIn.readLine());
+                        System.out.print("Alamat      : ");
+                        dataEdit.setAlamat(dataIn.readLine());
+                        System.out.print("Telp        : ");
+                        dataEdit.setTelp(dataIn.readLine());
+                        System.out.print("Email       : ");
+                        dataEdit.setEmail(dataIn.readLine());
+                    } else {
+                        System.out.println("Indeks tidak valid");
+                    }
                     break;
                 case 4:
-                default: //case 5
+                    System.out.println("");
+                    System.out.println("");
+                    System.out.println("=================================");
+                    System.out.println("          Tampilan Data           ");
+                    System.out.println("");
+                    for(int i = 0; i < index; i++) {
+                        data[i].print("");
+                    }
+                    break;
+                    default:
+                    System.out.println("Pilihan tidak valid");
+                    break;
             }
         }
     }

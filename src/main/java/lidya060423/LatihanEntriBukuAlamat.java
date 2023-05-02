@@ -13,34 +13,27 @@ public class LatihanEntriBukuAlamat {
     private String alamat;
     private String telp;
     private String email;
+    private static int EntryBukuCount;
     
-    public LatihanEntriBukuAlamat() {
-        
+    public LatihanEntriBukuAlamat(){
+        EntryBukuCount++;
     }
-    
-    
-    public LatihanEntriBukuAlamat(String temp) {
-        this.nama = temp;
-    }
-    
-    
-    public LatihanEntriBukuAlamat(String nama, String alamat) {
-        this.nama = nama;
-        this.alamat = alamat;
-    }
-    
-    public LatihanEntriBukuAlamat(String nama, String alamat, String telp) {
-        this.nama = nama;
-        this.alamat = alamat;
-        this.telp = telp;
-    }
+     public LatihanEntriBukuAlamat(String temp){ 
+        this.nama = temp; 
+        this.alamat = temp;
+        this.telp = temp;
+        this.email = temp;
+        EntryBukuCount++;
+    } 
     
     public LatihanEntriBukuAlamat(String nama, String alamat, String telp, String email) {
         this.nama = nama;
         this.alamat = alamat;
         this.telp = telp;
         this.email = email;
-    }
+        
+        EntryBukuCount++;
+    } 
     
     public String getNama() {
         return nama;
@@ -68,6 +61,11 @@ public class LatihanEntriBukuAlamat {
     }
     public void setEmail (String email) {
         this.email = email;
+    }
+    
+    public static int  getEntryBukuCount(){
+        return EntryBukuCount;
+        
     }
     
     public void print (String temp) {
