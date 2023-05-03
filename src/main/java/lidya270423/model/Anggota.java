@@ -14,11 +14,11 @@ public class Anggota {
     private String alamat;
     private String jenisKelamin;
     
-    public Anggota() {
+    public Anggota() {//default kontruktor
         
     }
     
-    public Anggota(String kodeAnggota, String namaAnggota, String alamat, String jenisKelamin) {
+    public Anggota(String kodeAnggota, String namaAnggota, String alamat, String jenisKelamin) {//konstruktor
         this.kodeAnggota = kodeAnggota;
         this.namaAnggota = namaAnggota;
         this.alamat = alamat;
