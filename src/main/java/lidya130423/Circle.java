@@ -8,7 +8,7 @@ package lidya130423;
  *
  * @author ASUS F15
  */
-public class Circle {
+public class Circle implements Relation{
     private double r;
     private double d;
     
@@ -29,5 +29,23 @@ public class Circle {
     public double getKeliling() {
         double kll = 3.14*d;
         return kll;
+    }
+    
+    public boolean isGreater(Object a, Object b) {
+        double aLen = ((Line) a).getLength();
+        double bLen = ((Line) b).getLength();
+        return (aLen > bLen);
+    }
+
+    public boolean isLess(Object a, Object b) {
+        double aLen = ((Line) a).getLength();
+        double bLen = ((Line) b).getLength();
+        return (aLen < bLen);
+    }
+
+    public boolean isEqual(Object a, Object b) {
+        double aLen = ((Line) a).getLength();
+        double bLen = ((Line) b).getLength();
+        return (aLen == bLen);
     }
 }

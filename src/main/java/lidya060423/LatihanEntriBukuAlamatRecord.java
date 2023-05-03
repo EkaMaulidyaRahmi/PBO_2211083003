@@ -10,9 +10,10 @@ package lidya060423;
  */
 public class LatihanEntriBukuAlamatRecord {
     public static void main(String[] args) {
-        LatihanEntriBukuAlamat Diah = new LatihanEntriBukuAlamat("Diah","Bandung","082365989877");
+        LatihanEntriBukuAlamat Diah = new LatihanEntriBukuAlamat("Diah","Bandung","082365989877","diah65@gmail.com");
+        
         Diah.print("");
         
-        System.out.println("Jumlah Record    : "+ EntryBukuAlamat.getEntryBukuCount());
+        System.out.println("Jumlah Record    : "+ LatihanEntriBukuAlamat.getEntriBukuCount());
     }
 }

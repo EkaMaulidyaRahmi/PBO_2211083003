@@ -10,7 +10,15 @@ package lidya130423;
  */
 public class CircleExample {
     public static void main(String[] args) {
-        Relation mycircle = new Circle();
+        Relation myInteger = new MyInteger();
+        Relation myDouble = new MyDouble();
+        boolean hasilInt = myInteger.isGreater(5, 6);
+        boolean hasilDbl = myDouble.isGreater(6.4, 2.2);
+        System.err.println("Hasil Integer " + hasilInt);
+        System.err.println("Hasil Double " + hasilDbl);
         
+        Relation mycircle = new Circle();
+        Circle circle = new Circle(7,14);
+        System.out.println("Circle" + getLuas);
     }
 }

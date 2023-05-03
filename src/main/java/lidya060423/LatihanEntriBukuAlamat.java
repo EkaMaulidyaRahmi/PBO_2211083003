@@ -13,17 +13,17 @@ public class LatihanEntriBukuAlamat {
     private String alamat;
     private String telp;
     private String email;
-    private static int EntryBukuCount;
+    private static int EntriBukuCount;
     
     public LatihanEntriBukuAlamat(){
-        EntryBukuCount++;
+        EntriBukuCount++;
     }
      public LatihanEntriBukuAlamat(String temp){ 
         this.nama = temp; 
         this.alamat = temp;
         this.telp = temp;
         this.email = temp;
-        EntryBukuCount++;
+        EntriBukuCount++;
     } 
     
     public LatihanEntriBukuAlamat(String nama, String alamat, String telp, String email) {
@@ -32,7 +32,7 @@ public class LatihanEntriBukuAlamat {
         this.telp = telp;
         this.email = email;
         
-        EntryBukuCount++;
+        EntriBukuCount++;
     } 
     
     public String getNama() {
@@ -63,8 +63,8 @@ public class LatihanEntriBukuAlamat {
         this.email = email;
     }
     
-    public static int  getEntryBukuCount(){
-        return EntryBukuCount;
+    public static int  getEntriBukuCount(){
+        return EntriBukuCount;
         
     }
     
