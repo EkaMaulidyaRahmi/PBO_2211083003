@@ -3,10 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package lidya270423.controller;
+
 import lidya270423.model.*;
 import lidya270423.view.*;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.table.*;
 import java.util.List;
 
 /**
@@ -40,6 +41,35 @@ public class BukuController {
         buku.setTahun(formBuku.getTxtTahun().getText());
         bukuDao.save(buku);
         JOptionPane.showMessageDialog(formBuku, "Insert Ok");
+    }
+    
+   public void updateBuku() {
+        int index = formBuku.getTblBuku().getSelectedRow();
+        buku.setKodeBuku(formBuku.getTxtKodeBuku().getText());
+        buku.setJudul(formBuku.getTxtJudul().getText());
+        buku.setPengarang(formBuku.getTxtPengarang().getText());
+        buku.setPenerbit(formBuku.getTxtPenerbit().getText());
+        buku.setTahun(formBuku.getTxtTahun().getText());
+        bukuDao.update(index,buku);
+        JOptionPane.showMessageDialog(formBuku, "Insert Ok");
+    } 
+   
+    public void delete() {
+        int index = formBuku.getTblBuku().getSelectedRow();
+        bukuDao.delete(index);
+        JOptionPane.showMessageDialog(formBuku, "Delete Ok");
+    }
+    
+    public void getBuku() {
+        int index = formBuku.getTblBuku().getSelectedRow();
+        buku = bukuDao.getBuku(index);
+        if(buku!=null) {
+            formBuku.getTxtKodeBuku().setText(buku.getKodeBuku());
+            formBuku.getTxtJudul().setText(buku.getJudul());
+            formBuku.getTxtPengarang().setText(buku.getPengarang());
+            formBuku.getTxtPenerbit().setText(buku.getPenerbit());
+            formBuku.getTxtTahun().setText(buku.getTahun());
+        }
     }
     
     public void tampil() {

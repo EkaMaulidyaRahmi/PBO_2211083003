@@ -12,6 +12,11 @@ public class BukuDaoImpl implements BukuDao {
     
     List<Buku> data = new ArrayList();
     
+    public BukuDaoImpl(){
+        data.add(new Buku("001", "Bumi", "Tere Liye", "Gramedia", "2021"));
+        data.add(new Buku("002", "Bulan", "Tere Liye", "Gramedia", "2017"));
+    }
+    
     public void save(Buku buku) {
         data.add(buku);
     }
