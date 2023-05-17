@@ -24,7 +24,7 @@ public class FormPelanggan extends javax.swing.JFrame {
         controller = new PelangganController(this);
         controller.bersihForm();
         controller.tampil();
-    }
+    } 
     
     public javax.swing.JTextField getTxtKodePelanggan() {
         return txtKodePelanggan;
@@ -75,11 +75,11 @@ public class FormPelanggan extends javax.swing.JFrame {
         txtMeterBulanLalu = new javax.swing.JTextField();
         txtTarif = new javax.swing.JTextField();
         txtDiskon = new javax.swing.JTextField();
-        btnInsert = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblPelanggan = new javax.swing.JTable();
+        btnInsert = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addMouseListener(new java.awt.event.MouseAdapter() {
@@ -87,25 +87,49 @@ public class FormPelanggan extends javax.swing.JFrame {
                 formMouseClicked(evt);
             }
         });
+        getContentPane().setLayout(null);
 
         jLabel1.setText("Kode Pelanggan");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(17, 27, 106, 16);
 
         jLabel2.setText("Nama");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(17, 61, 106, 16);
 
         jLabel3.setText("Meter bulan ini");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(17, 95, 106, 16);
 
         jLabel4.setText("Meter bulan lalu");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(17, 129, 106, 16);
 
         jLabel5.setText("Tarif");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(17, 163, 106, 16);
 
         jLabel6.setText("Diskon");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(17, 197, 106, 16);
+        getContentPane().add(txtKodePelanggan);
+        txtKodePelanggan.setBounds(208, 24, 403, 22);
 
-        btnInsert.setText("Insert");
-        btnInsert.addActionListener(new java.awt.event.ActionListener() {
+        txtNama.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInsertActionPerformed(evt);
+                txtNamaActionPerformed(evt);
             }
         });
+        getContentPane().add(txtNama);
+        txtNama.setBounds(208, 58, 403, 22);
+        getContentPane().add(txtMeterBulanIni);
+        txtMeterBulanIni.setBounds(208, 92, 403, 22);
+        getContentPane().add(txtMeterBulanLalu);
+        txtMeterBulanLalu.setBounds(208, 126, 403, 22);
+        getContentPane().add(txtTarif);
+        txtTarif.setBounds(208, 160, 403, 22);
+        getContentPane().add(txtDiskon);
+        txtDiskon.setBounds(208, 194, 403, 22);
 
         btnUpdate.setText("Update");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
@@ -113,6 +137,8 @@ public class FormPelanggan extends javax.swing.JFrame {
                 btnUpdateActionPerformed(evt);
             }
         });
+        getContentPane().add(btnUpdate);
+        btnUpdate.setBounds(286, 255, 72, 23);
 
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -120,6 +146,8 @@ public class FormPelanggan extends javax.swing.JFrame {
                 btnDeleteActionPerformed(evt);
             }
         });
+        getContentPane().add(btnDelete);
+        btnDelete.setBounds(483, 255, 72, 23);
 
         tblPelanggan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -131,7 +159,15 @@ public class FormPelanggan extends javax.swing.JFrame {
             new String [] {
                 "Kode", "Nama", "BMI", "MBL", "Tarif", "Diskon", "Total"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tblPelanggan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblPelangganMouseClicked(evt);
@@ -139,91 +175,25 @@ public class FormPelanggan extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblPelanggan);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(78, 78, 78)
-                .addComponent(btnInsert)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnUpdate)
-                .addGap(125, 125, 125)
-                .addComponent(btnDelete)
-                .addGap(92, 92, 92))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 609, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(85, 85, 85)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtKodePelanggan)
-                            .addComponent(txtNama)
-                            .addComponent(txtMeterBulanIni)
-                            .addComponent(txtMeterBulanLalu)
-                            .addComponent(txtTarif, javax.swing.GroupLayout.DEFAULT_SIZE, 403, Short.MAX_VALUE)
-                            .addComponent(txtDiskon))))
-                .addContainerGap(21, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtKodePelanggan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtMeterBulanIni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtMeterBulanLalu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtTarif, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(txtDiskon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnInsert)
-                    .addComponent(btnUpdate)
-                    .addComponent(btnDelete))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
-        );
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(17, 290, 609, 275);
+
+        btnInsert.setText("Insert");
+        btnInsert.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInsertActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnInsert);
+        btnInsert.setBounds(78, 255, 72, 23);
 
         setSize(new java.awt.Dimension(661, 589));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
-        // TODO add your handling code here:
-        controller.savePelanggan();
-        controller.tampil();
-        controller.bersihForm();
-    }//GEN-LAST:event_btnInsertActionPerformed
-
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
         // TODO add your handling code here:
-        controller.getAnggota();
+        controller.getPelanggan();
     }//GEN-LAST:event_formMouseClicked
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
@@ -244,6 +214,17 @@ public class FormPelanggan extends javax.swing.JFrame {
         // TODO add your handling code here:
         controller.getPelanggan();
     }//GEN-LAST:event_tblPelangganMouseClicked
+
+    private void txtNamaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNamaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNamaActionPerformed
+
+    private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
+        // TODO add your handling code here:
+        controller.savePelanggan();
+        controller.tampil();
+        controller.bersihForm();
+    }//GEN-LAST:event_btnInsertActionPerformed
 
     /**
      * @param args the command line arguments
