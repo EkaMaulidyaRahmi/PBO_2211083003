@@ -166,7 +166,8 @@ public class FormPeminjaman extends javax.swing.JFrame {
         getContentPane().add(cboBuku);
         cboBuku.setBounds(140, 50, 368, 30);
 
-        pack();
+        setSize(new java.awt.Dimension(555, 478));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void cboBukuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboBukuActionPerformed
