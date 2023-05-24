@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package lidya040523.model;
+package lidya270423.model;
 import java.util.*;
 
 /**
@@ -22,8 +22,17 @@ public class PeminjamanDaoImpl implements PeminjamanDao {
         data.add(peminjaman);
     }
     
-    public void update(int idx, Peminjaman peminjaman) {
-        data.add(peminjaman);
+    public void update(int index, Peminjaman peminjaman) {
+        data.add(index,peminjaman);
     }
     
+    public void delete(int index){
+        data.remove(index);
+    }
+    public Peminjaman getPeminjaman(int index){
+        return data.get(index);
+    }
+    public List<Peminjaman> getAllPeminjaman(){
+        return data;
+    } 
 }
