@@ -15,7 +15,6 @@ public class Anggota {
     private String jenisKelamin;
     
     public Anggota() {
-        
     }
     
     public Anggota(String nobp, String nama, String alamat, String jenisKelamin) {
@@ -24,37 +23,36 @@ public class Anggota {
         this.alamat = alamat;
         this.jenisKelamin = jenisKelamin;
     }
-    
+
     public String getNobp() {
         return nobp;
     }
-    
-    public void setNobp(String nobp) {
-        this.nobp = nobp;
-    }
-    
+
     public String getNama() {
         return nama;
     }
-    
-    public void setNama(String nama) {
-        this.nama = nama;
-    }
-    
+
     public String getAlamat() {
         return alamat;
-    }
-    
-    public void setAlamat(String alamat) {
-        this.alamat = alamat;
     }
 
     public String getJenisKelamin() {
         return jenisKelamin;
     }
-    
+
+    public void setNobp(String nobp) {
+        this.nobp = nobp;
+    }
+
+    public void setNama(String nama) {
+        this.nama = nama;
+    }
+
+    public void setAlamat(String alamat) {
+        this.alamat = alamat;
+    }
+
     public void setJenisKelamin(String jenisKelamin) {
         this.jenisKelamin = jenisKelamin;
     }
-    
 }

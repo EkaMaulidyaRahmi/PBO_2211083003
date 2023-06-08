@@ -19,15 +19,15 @@ import lidya240523.database.DatabaseHelper;
  *
  * @author ASUS F15
  */
-public class AnggotaController {
-    FormAnggota view;
-    Anggota model;
-    AnggotaDao dao;
+public class PeminjamanController {
+    FormPeminjaman view;
+    Peminjaman model;
+    PeminjamanDao dao;
     
-    public AnggotaController(FormAnggota view) {
+    public PeminjamanController(FormPeminjaman view) {
         try {
             this.view = view;
-            dao = new AnggotaDaoImpl(DatabaseHelper.getConnection());
+            dao = new PeminjamanDaoImpl(DatabaseHelper.getConnection());
         } catch (SQLException ex) {
             Logger.getLogger(DatabaseHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -35,20 +35,18 @@ public class AnggotaController {
     
     public void clearForm() {
         view.getTxtNobp().setText("");
-        view.getTxtNama().setText("");
-        view.getTxtAlamat().setText("");
-        view.getCboJenisKelamin().removeAllItems();
-        view.getCboJenisKelamin().addItem("L");
-        view.getCboJenisKelamin().addItem("P");
+        view.getTxtKodeBuku().setText("");
+        view.getTxtTglPinjam().setText("");
+        view.getTxtTglKembali().setText("");
     }
     
     public void insert() {
         try {
-            model = new Anggota();
+            model = new Peminjaman();
             model.setNobp(view.getTxtNobp().getText());
-            model.setNama(view.getTxtNama().getText());
-            model.setAlamat(view.getTxtAlamat().getText());
-            model.setJenisKelamin(view.getCboJenisKelamin().getSelectedItem().toString());
+            model.setKodeBuku(view.getTxtKodeBuku().getText());
+            model.setTglPinjam(view.getTxtTglPinjam().getText());
+            model.setTglKembali(view.getTxtTglKembali().getText());
             dao.insert(model);
             JOptionPane.showMessageDialog(view, "Entri Data Ok");
         } catch (SQLException ex) {
@@ -59,9 +57,9 @@ public class AnggotaController {
     public void update() {
         try {
             model.setNobp(view.getTxtNobp().getText());
-            model.setNama(view.getTxtNama().getText());
-            model.setAlamat(view.getTxtAlamat().getText());
-            model.setJenisKelamin(view.getCboJenisKelamin().getSelectedItem().toString());
+            model.setKodeBuku(view.getTxtKodeBuku().getText());
+            model.setTglPinjam(view.getTxtTglPinjam().getText());
+            model.setTglKembali(view.getTxtTglKembali().getText());
             dao.update(model);
             JOptionPane.showMessageDialog(view, "Update Data Ok");
         } catch (SQLException ex) {
@@ -79,15 +77,15 @@ public class AnggotaController {
         }
     }
     
-    public void getAnggota() {
+    public void getPeminjaman() {
         try {
-            String nobp = view.getTblAnggota().getValueAt(view.getTblAnggota().getSelectedRow(), 0).toString();
-            model = dao.getAnggota(nobp);
+            String nobp = view.getTblPeminjaman().getValueAt(view.getTblPeminjaman().getSelectedRow(), 0).toString();
+            model = dao.getPeminjaman(nobp);
             if(model!=null) {
                 view.getTxtNobp().setText(model.getNobp());
-                view.getTxtNama().setText(model.getNama());
-                view.getTxtAlamat().setText(model.getAlamat());
-                view.getCboJenisKelamin().setSelectedItem(model.getJenisKelamin());
+                view.getTxtKodeBuku().setText(model.getKodeBuku());
+                view.getTxtTglPinjam().setText(model.getTglPinjam());
+                view.getTxtTglKembali().setText(model.getTglKembali());
             }
         } catch (SQLException ex) {
             Logger.getLogger(DatabaseHelper.class.getName()).log(Level.SEVERE, null, ex);
@@ -96,15 +94,15 @@ public class AnggotaController {
     
     public void tampilTabel() {
         try {
-            DefaultTableModel tabelModel = (DefaultTableModel) view.getTblAnggota().getModel();
+            DefaultTableModel tabelModel = (DefaultTableModel) view.getTblPeminjaman().getModel();
             tabelModel.setRowCount(0);
-            List<Anggota> list = dao.getAll();
-            for (Anggota anggota1 : list) {
+            List<Peminjaman> list = dao.getAll();
+            for (Peminjaman peminjaman1 : list) {
                 Object[] row = {
-                    anggota1.getNobp(),
-                    anggota1.getNama(),
-                    anggota1.getAlamat(),
-                    anggota1.getJenisKelamin()
+                    peminjaman1.getNobp(),
+                    peminjaman1.getKodeBuku(),
+                    peminjaman1.getTglPinjam(),
+                    peminjaman1.getTglKembali()
                 };
                 tabelModel.addRow(row);
             }

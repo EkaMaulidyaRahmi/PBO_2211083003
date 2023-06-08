@@ -5,8 +5,6 @@
 package lidya240523.view;
 
 import lidya240523.controller.*;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
@@ -14,39 +12,39 @@ import javax.swing.JTextField;
  *
  * @author ASUS F15
  */
-public class FormAnggota extends javax.swing.JFrame {
+public class FormPeminjaman extends javax.swing.JFrame {
 
     /**
-     * Creates new form FormAnggota
+     * Creates new form FormPeminjaman
      */
-    private final AnggotaController controller;
-    public FormAnggota() {
+    private final PeminjamanController controller;
+    public FormPeminjaman() {
         initComponents();
-        controller = new AnggotaController(this);
+        controller = new PeminjamanController(this);
         controller.clearForm();
         controller.tampilTabel();
     }
 
-    public JTable getTblAnggota() {
-        return tblAnggota;
+    public JTable getTblPeminjaman() {
+        return tblPeminjaman;
     }
 
-    public JTextField getTxtAlamat() {
-        return txtAlamat;
-    }
-
-    public JTextField getTxtNama() {
-        return txtNama;
+    public JTextField getTxtKodeBuku() {
+        return txtKodeBuku;
     }
 
     public JTextField getTxtNobp() {
         return txtNobp;
     }
 
-    public JComboBox<String> getCboJenisKelamin() {
-        return cboJenisKelamin;
+    public JTextField getTxtTglKembali() {
+        return txtTglKembali;
     }
-    
+
+    public JTextField getTxtTglPinjam() {
+        return txtTglPinjam;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -56,69 +54,76 @@ public class FormAnggota extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        txtNobp = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        txtNama = new javax.swing.JTextField();
-        txtAlamat = new javax.swing.JTextField();
-        cboJenisKelamin = new javax.swing.JComboBox<>();
-        btnInsert = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        txtNobp = new javax.swing.JTextField();
+        txtKodeBuku = new javax.swing.JTextField();
+        txtTglPinjam = new javax.swing.JTextField();
+        txtTglKembali = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblPeminjaman = new javax.swing.JTable();
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblAnggota = new javax.swing.JTable();
+        btnInsert = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        jLabel1.setText("NoBP");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(20, 30, 100, 16);
-
-        txtNobp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNobpActionPerformed(evt);
-            }
-        });
-        getContentPane().add(txtNobp);
-        txtNobp.setBounds(140, 20, 340, 30);
-
-        jLabel2.setText("Nama");
+        jLabel2.setText("NoBP");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(20, 70, 32, 16);
+        jLabel2.setBounds(20, 30, 80, 16);
 
-        jLabel3.setText("Alamat");
+        jLabel3.setText("Kode Buku");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(20, 110, 110, 16);
+        jLabel3.setBounds(20, 70, 110, 16);
 
-        jLabel4.setText("Jenis Kelamin");
+        jLabel4.setText("Tanggal Pinjam");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(20, 150, 110, 16);
-        getContentPane().add(txtNama);
-        txtNama.setBounds(140, 60, 340, 30);
-        getContentPane().add(txtAlamat);
-        txtAlamat.setBounds(140, 102, 340, 30);
+        jLabel4.setBounds(20, 110, 100, 16);
 
-        cboJenisKelamin.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "L", "P" }));
-        cboJenisKelamin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboJenisKelaminActionPerformed(evt);
+        jLabel5.setText("Tanggal Kembali");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(20, 150, 100, 16);
+        getContentPane().add(txtNobp);
+        txtNobp.setBounds(140, 20, 400, 30);
+        getContentPane().add(txtKodeBuku);
+        txtKodeBuku.setBounds(140, 60, 400, 30);
+        getContentPane().add(txtTglPinjam);
+        txtTglPinjam.setBounds(140, 100, 400, 30);
+        getContentPane().add(txtTglKembali);
+        txtTglKembali.setBounds(140, 140, 400, 30);
+
+        tblPeminjaman.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "NoBp", "Kode Buku", "Tanggal Pinjam", "Tanggal Kembali"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
-        getContentPane().add(cboJenisKelamin);
-        cboJenisKelamin.setBounds(140, 142, 90, 30);
-
-        btnInsert.setText("Insert");
-        btnInsert.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInsertActionPerformed(evt);
+        tblPeminjaman.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblPeminjamanMouseClicked(evt);
             }
         });
-        getContentPane().add(btnInsert);
-        btnInsert.setBounds(40, 200, 72, 23);
+        jScrollPane1.setViewportView(tblPeminjaman);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(20, 240, 520, 340);
 
         btnUpdate.setText("Update");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
@@ -136,7 +141,7 @@ public class FormAnggota extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnDelete);
-        btnDelete.setBounds(260, 200, 72, 23);
+        btnDelete.setBounds(280, 200, 72, 23);
 
         btnCancel.setText("Cancel");
         btnCancel.addActionListener(new java.awt.event.ActionListener() {
@@ -145,48 +150,20 @@ public class FormAnggota extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCancel);
-        btnCancel.setBounds(370, 200, 72, 23);
+        btnCancel.setBounds(400, 200, 72, 23);
 
-        tblAnggota.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "NoBP", "Nama", "Alamat", "Jenis Kelamin"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+        btnInsert.setText("Insert");
+        btnInsert.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInsertActionPerformed(evt);
             }
         });
-        tblAnggota.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblAnggotaMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(tblAnggota);
+        getContentPane().add(btnInsert);
+        btnInsert.setBounds(30, 200, 72, 23);
 
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(20, 240, 470, 290);
-
-        setSize(new java.awt.Dimension(524, 589));
+        setSize(new java.awt.Dimension(575, 606));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtNobpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNobpActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNobpActionPerformed
-
-    private void cboJenisKelaminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboJenisKelaminActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboJenisKelaminActionPerformed
 
     private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
         // TODO add your handling code here:
@@ -194,11 +171,6 @@ public class FormAnggota extends javax.swing.JFrame {
         controller.tampilTabel();
         controller.clearForm();
     }//GEN-LAST:event_btnInsertActionPerformed
-
-    private void tblAnggotaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblAnggotaMouseClicked
-        // TODO add your handling code here:
-        controller.getAnggota();
-    }//GEN-LAST:event_tblAnggotaMouseClicked
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
@@ -220,6 +192,11 @@ public class FormAnggota extends javax.swing.JFrame {
         controller.clearForm();
     }//GEN-LAST:event_btnCancelActionPerformed
 
+    private void tblPeminjamanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPeminjamanMouseClicked
+        // TODO add your handling code here:
+        controller.getPeminjaman();
+    }//GEN-LAST:event_tblPeminjamanMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -237,20 +214,20 @@ public class FormAnggota extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormAnggota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormPeminjaman.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormAnggota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormPeminjaman.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormAnggota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormPeminjaman.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormAnggota.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormPeminjaman.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FormAnggota().setVisible(true);
+                new FormPeminjaman().setVisible(true);
             }
         });
     }
@@ -260,19 +237,15 @@ public class FormAnggota extends javax.swing.JFrame {
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnInsert;
     private javax.swing.JButton btnUpdate;
-    private javax.swing.JComboBox<String> cboJenisKelamin;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblAnggota;
-    private javax.swing.JTextField txtAlamat;
-    private javax.swing.JTextField txtNama;
+    private javax.swing.JTable tblPeminjaman;
+    private javax.swing.JTextField txtKodeBuku;
     private javax.swing.JTextField txtNobp;
+    private javax.swing.JTextField txtTglKembali;
+    private javax.swing.JTextField txtTglPinjam;
     // End of variables declaration//GEN-END:variables
-
-    public String getNobp() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }

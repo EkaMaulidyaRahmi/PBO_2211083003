@@ -19,7 +19,7 @@ public class AnggotaDaoImpl implements AnggotaDao {
     }
     
     public void insert(Anggota anggota) throws SQLException {
-        String sql = "insert into anggota values(?,?,?,?)";
+        String sql = "Insert into anggota values(?,?,?,?)";
         PreparedStatement ps = connection.prepareStatement(sql);
         ps.setString(1, anggota.getNobp());
         ps.setString(2, anggota.getNama());
@@ -29,7 +29,7 @@ public class AnggotaDaoImpl implements AnggotaDao {
     }
     
     public void update(Anggota anggota) throws SQLException {
-        String sql = "update anggota set nama=?, alamat=?, jeniskelamin=?, where nobp=?";
+        String sql="Update anggota set nama=?, alamat=?, jenis_kelamin=? where nobp=?";
         PreparedStatement ps = connection.prepareStatement(sql);
         ps.setString(1, anggota.getNama());
         ps.setString(2, anggota.getAlamat());
@@ -39,7 +39,7 @@ public class AnggotaDaoImpl implements AnggotaDao {
     }
     
     public void delete(String nobp) throws SQLException {
-        String sql = "delete from anggota where nobp=?";
+        String sql="delete from anggota where nobp=?";
         PreparedStatement ps = connection.prepareStatement(sql);
         ps.setString(1, nobp);
         ps.executeUpdate();
@@ -62,12 +62,12 @@ public class AnggotaDaoImpl implements AnggotaDao {
     }
     
     public List<Anggota> getAll() throws SQLException {
-        String sql = "select * from anggota";
+        String sql="Select * from anggota ";
         PreparedStatement ps = connection.prepareStatement(sql);
         Anggota anggota = null;
         ResultSet rs = ps.executeQuery();
-        List<Anggota> list = new ArrayList<>();
-        while(rs.next()) {
+        List <Anggota> list = new ArrayList<>();
+        while (rs.next()){
             anggota = new Anggota();
             anggota.setNobp(rs.getString(1));
             anggota.setNama(rs.getString(2));
