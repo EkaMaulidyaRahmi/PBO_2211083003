@@ -3,22 +3,22 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package lidya240523.dao;
+
 import java.sql.*;
-import lidya240523.model.Peminjaman;
 import java.util.*;
-import lidya270423.model.Buku;
+import lidya240523.model.Peminjaman;
 
 /**
  *
  * @author ASUS F15
  */
 public class PeminjamanDaoImpl implements PeminjamanDao {
-    
     Connection connection;
     public PeminjamanDaoImpl (Connection connection) {
         this.connection = connection;
     }
-
+    
+    @Override
     public void insert(Peminjaman peminjaman) throws SQLException {
         String sql = "Insert into peminjaman values (?,?,?,?)";
         PreparedStatement ps = connection.prepareStatement(sql);
@@ -28,28 +28,38 @@ public class PeminjamanDaoImpl implements PeminjamanDao {
         ps.setString(4, peminjaman.getTglKembali());
         ps.executeUpdate();
     }
-    
+
+    @Override
     public void update(Peminjaman peminjaman) throws SQLException {
-        String sql= "Update peminjaman set kodebuku=?, tglpinjam=?, tglkembali=? where nobp=?";
+        String sql= "Update peminjaman set tglkembali=?" 
+                + "where nobp=? and kodebuku=? and tglpinjam=?";
+        PreparedStatement ps = connection.prepareStatement(sql);
+        ps.setString(1,peminjaman.getTglKembali());
+        ps.setString(2,peminjaman.getNobp());
+        ps.setString(3,peminjaman.getKodeBuku());
+        ps.setString(4,peminjaman.getTglPinjam());
+        ps.executeUpdate();
+    }
+
+    @Override
+    public void delete(Peminjaman peminjaman) throws SQLException {
+        String sql= "Delete from peminjaman " 
+                + "where nobp=? and kodebuku=? and tglpinjam=?";
         PreparedStatement ps = connection.prepareStatement(sql);
         ps.setString(1,peminjaman.getNobp());
         ps.setString(2,peminjaman.getKodeBuku());
         ps.setString(3,peminjaman.getTglPinjam());
-        ps.setString(4,peminjaman.getTglKembali());
         ps.executeUpdate();
     }
-    
-    public void delete(String nobp) throws SQLException {
-        String sql = "Delete from peminjaman where nobp=?";
+
+    @Override
+    public Peminjaman getPeminjaman(String nobp, String kodeBuku, String tglPinjam) throws SQLException {
+        String sql = "select * from peminjaman "
+                + "where nobp=? and kodebuku=? and tglpinjam=?";
         PreparedStatement ps = connection.prepareStatement(sql);
         ps.setString(1, nobp);
-        ps.executeUpdate();
-    }
-    
-    public Peminjaman getPeminjaman(String nobp) throws SQLException {
-        String sql = "Select * from peminjaman where nobp=?";
-        PreparedStatement ps = connection.prepareStatement(sql);
-        ps.setString(1, nobp);
+        ps.setString(2,kodeBuku);
+        ps.setString(3,tglPinjam);
         ResultSet rs = ps.executeQuery();
         Peminjaman peminjaman = null;
         if(rs.next()) {
@@ -61,11 +71,12 @@ public class PeminjamanDaoImpl implements PeminjamanDao {
         }
         return peminjaman;
     }
-    
+
+    @Override
     public List<Peminjaman> getAll() throws SQLException {
         String sql = "Select * from peminjaman";
         PreparedStatement ps = connection.prepareStatement(sql);
-        Peminjaman peminjaman = null;
+        Peminjaman peminjaman;
         ResultSet rs = ps.executeQuery();
         List <Peminjaman> list = new ArrayList<>();
         while (rs.next()) {
@@ -74,6 +85,7 @@ public class PeminjamanDaoImpl implements PeminjamanDao {
             peminjaman.setKodeBuku(rs.getString(2));
             peminjaman.setTglPinjam(rs.getString(3));
             peminjaman.setTglKembali(rs.getString(4));
+            list.add(peminjaman);
         }
         return list;
     }

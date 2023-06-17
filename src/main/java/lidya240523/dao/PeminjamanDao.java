@@ -14,7 +14,7 @@ import java.util.List;
 public interface PeminjamanDao {
     void insert(Peminjaman peminjaman) throws SQLException;
     void update(Peminjaman peminjaman) throws SQLException;
-    void delete(String nobp) throws SQLException;
-    Peminjaman getPeminjaman(String nobp) throws SQLException;
+    void delete(Peminjaman peminjaman) throws SQLException;
+    Peminjaman getPeminjaman(String nobp, String kodeBuku,String tglPinjam) throws SQLException;
     List<Peminjaman> getAll() throws SQLException;
 }
