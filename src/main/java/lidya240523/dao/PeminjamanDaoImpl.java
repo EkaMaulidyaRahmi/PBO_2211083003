@@ -6,6 +6,8 @@ package lidya240523.dao;
 
 import java.sql.*;
 import java.util.*;
+import lidya240523.model.Anggota;
+import lidya240523.model.Buku;
 import lidya240523.model.Peminjaman;
 
 /**
@@ -22,8 +24,8 @@ public class PeminjamanDaoImpl implements PeminjamanDao {
     public void insert(Peminjaman peminjaman) throws SQLException {
         String sql = "Insert into peminjaman values (?,?,?,?)";
         PreparedStatement ps = connection.prepareStatement(sql);
-        ps.setString(1, peminjaman.getNobp());
-        ps.setString(2, peminjaman.getKodeBuku());
+        ps.setString(1, peminjaman.getAnggota().getNobp());
+        ps.setString(2, peminjaman.getBuku().getKodeBuku());
         ps.setString(3, peminjaman.getTglPinjam());
         ps.setString(4, peminjaman.getTglKembali());
         ps.executeUpdate();
@@ -35,8 +37,8 @@ public class PeminjamanDaoImpl implements PeminjamanDao {
                 + "where nobp=? and kodebuku=? and tglpinjam=?";
         PreparedStatement ps = connection.prepareStatement(sql);
         ps.setString(1,peminjaman.getTglKembali());
-        ps.setString(2,peminjaman.getNobp());
-        ps.setString(3,peminjaman.getKodeBuku());
+        ps.setString(2,peminjaman.getAnggota().getNobp());
+        ps.setString(3,peminjaman.getBuku().getKodeBuku());
         ps.setString(4,peminjaman.getTglPinjam());
         ps.executeUpdate();
     }
@@ -46,8 +48,8 @@ public class PeminjamanDaoImpl implements PeminjamanDao {
         String sql= "Delete from peminjaman " 
                 + "where nobp=? and kodebuku=? and tglpinjam=?";
         PreparedStatement ps = connection.prepareStatement(sql);
-        ps.setString(1,peminjaman.getNobp());
-        ps.setString(2,peminjaman.getKodeBuku());
+        ps.setString(1,peminjaman.getAnggota().getNobp());
+        ps.setString(2,peminjaman.getBuku().getKodeBuku());
         ps.setString(3,peminjaman.getTglPinjam());
         ps.executeUpdate();
     }
@@ -58,14 +60,18 @@ public class PeminjamanDaoImpl implements PeminjamanDao {
                 + "where nobp=? and kodebuku=? and tglpinjam=?";
         PreparedStatement ps = connection.prepareStatement(sql);
         ps.setString(1, nobp);
-        ps.setString(2,kodeBuku);
-        ps.setString(3,tglPinjam);
+        ps.setString(2, kodeBuku);
+        ps.setString(3, tglPinjam);
         ResultSet rs = ps.executeQuery();
         Peminjaman peminjaman = null;
         if(rs.next()) {
             peminjaman = new Peminjaman();
-            peminjaman.setNobp(rs.getString(1));
-            peminjaman.setKodeBuku(rs.getString(2));
+            AnggotaDao anggotaDao = new AnggotaDaoImpl(connection);
+            Anggota anggota = anggotaDao.getAnggota(nobp);
+            peminjaman.setAnggota(anggota);
+            BukuDao bukuDao = new BukuDaoImpl(connection);
+            Buku buku = bukuDao.getBuku(kodeBuku);
+            peminjaman.setBuku(buku);
             peminjaman.setTglPinjam(rs.getString(3));
             peminjaman.setTglKembali(rs.getString(4));
         }
@@ -81,8 +87,12 @@ public class PeminjamanDaoImpl implements PeminjamanDao {
         List <Peminjaman> list = new ArrayList<>();
         while (rs.next()) {
             peminjaman = new Peminjaman();
-            peminjaman.setNobp(rs.getString(1));
-            peminjaman.setKodeBuku(rs.getString(2));
+            AnggotaDao anggotaDao = new AnggotaDaoImpl(connection);
+            Anggota anggota = anggotaDao.getAnggota(rs.getString(1));
+            peminjaman.setAnggota(anggota);
+            BukuDao bukuDao = new BukuDaoImpl(connection);
+            Buku buku = bukuDao.getBuku(rs.getString(2)); 
+            peminjaman.setBuku(buku);
             peminjaman.setTglPinjam(rs.getString(3));
             peminjaman.setTglKembali(rs.getString(4));
             list.add(peminjaman);

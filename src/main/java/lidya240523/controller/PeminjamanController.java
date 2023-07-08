@@ -75,8 +75,12 @@ public class PeminjamanController {
     public void insert() {
         try {
             peminjaman = new Peminjaman();
-            peminjaman.setNobp(formPeminjaman.getCboNobp().getSelectedItem().toString().split("-")[0]);
-            peminjaman.setKodeBuku(formPeminjaman.getCboKodeBuku().getSelectedItem().toString().split("-")[0]);
+            Anggota anggota = anggotaDao.getAnggota(formPeminjaman.getCboNobp()
+                    .getSelectedItem().toString().split("-")[0]);
+            peminjaman.setAnggota(anggota);
+            Buku buku = bukuDao.getBuku(formPeminjaman.getCboKodeBuku()
+                    .getSelectedItem().toString().split("-")[0]);
+            peminjaman.setBuku(buku);
             peminjaman.setTglPinjam(formPeminjaman.getTxtTglPinjam().getText());
             peminjaman.setTglKembali(formPeminjaman.getTxtTglKembali().getText());
             peminjamanDao.insert(peminjaman);
@@ -97,11 +101,9 @@ public class PeminjamanController {
                     .getValueAt(formPeminjaman.getTblPeminjaman().getSelectedRow(), 4).toString();
             
             peminjaman = peminjamanDao.getPeminjaman(nobp, kodeBuku, tglPinjam);
-            Anggota anggota = anggotaDao.getAnggota(peminjaman.getNobp());
+            Anggota anggota = anggotaDao.getAnggota(peminjaman.getAnggota().getNobp());
             formPeminjaman.getCboNobp().setSelectedItem(anggota.getNobp()+"-"+anggota.getNama());
-            Buku buku = bukuDao.getBuku(peminjaman.getKodeBuku());
-            formPeminjaman.getCboNobp()
-                    .setSelectedItem(anggota.getNobp()+"-"+anggota.getNama());
+            Buku buku = bukuDao.getBuku(peminjaman.getBuku().getKodeBuku());
             formPeminjaman.getCboKodeBuku()
                     .setSelectedItem(buku.getKodeBuku()+"-"+buku.getJudulBuku());
             formPeminjaman.getTxtTglPinjam().setText(peminjaman.getTglPinjam());
@@ -113,17 +115,17 @@ public class PeminjamanController {
     
     public void tampilTabel() {
         try {
-            DefaultTableModel tabelModel 
+            DefaultTableModel tabelModel
                     = (DefaultTableModel) formPeminjaman.getTblPeminjaman().getModel();
             tabelModel.setRowCount(0);
             List<Peminjaman> list = peminjamanDao.getAll();
             for (Peminjaman p : list) {
-                Anggota anggota = anggotaDao.getAnggota(p.getNobp());
-                Buku buku = bukuDao.getBuku(p.getKodeBuku());
+                Anggota anggota = anggotaDao.getAnggota(p.getAnggota().getNobp());
+                Buku buku = bukuDao.getBuku(p.getBuku().getKodeBuku());
                 Object[] row = {
-                    p.getNobp(),
+                    anggota.getNobp(),
                     anggota.getNama(),
-                    p.getKodeBuku(),
+                    buku.getKodeBuku(),
                     buku.getJudulBuku(),
                     p.getTglPinjam(),
                     p.getTglKembali()
@@ -137,8 +139,12 @@ public class PeminjamanController {
     
     public void update() {
         try {
-            peminjaman.setNobp(formPeminjaman.getCboNobp().getSelectedItem().toString().split("-")[0]);
-            peminjaman.setKodeBuku(formPeminjaman.getCboKodeBuku().getSelectedItem().toString().split("-")[0]);
+            Anggota anggota = anggotaDao.getAnggota(formPeminjaman.getCboNobp()
+                    .getSelectedItem().toString().split("-")[0]);
+            peminjaman.setAnggota(anggota);
+            Buku buku = bukuDao.getBuku(formPeminjaman.getCboKodeBuku()
+                    .getSelectedItem().toString().split("-")[0]);
+            peminjaman.setBuku(buku);
             peminjaman.setTglPinjam(formPeminjaman.getTxtTglPinjam().getText());
             peminjaman.setTglKembali(formPeminjaman.getTxtTglKembali().getText());
             peminjamanDao.update(peminjaman);

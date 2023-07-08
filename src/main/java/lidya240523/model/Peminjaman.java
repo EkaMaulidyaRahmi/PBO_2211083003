@@ -9,8 +9,8 @@ package lidya240523.model;
  * @author ASUS F15
  */
 public class Peminjaman {
-    private String nobp;
-    private String kodeBuku;
+    private Anggota anggota;
+    private Buku buku;
     private String tglPinjam;
     private String tglKembali;
     
@@ -18,42 +18,43 @@ public class Peminjaman {
         
     }
     
-    public Peminjaman(String nobp, String kodeBuku, String tglPinjam, String tglKembali) {
-        this.nobp = nobp;
-        this.kodeBuku = kodeBuku;
+    public Peminjaman(Anggota anggota, Buku buku, String tglPinjam, String tglKembali) {
+        this.anggota = anggota;
+        this.buku = buku;
         this.tglPinjam = tglPinjam;
         this.tglKembali = tglKembali;
     }
 
-    public String getNobp() {
-        return nobp;
+    public Anggota getAnggota() {
+        return anggota;
     }
 
-    public String getKodeBuku() {
-        return kodeBuku;
+    public void setAnggota(Anggota anggota) {
+        this.anggota = anggota;
+    }
+
+    public Buku getBuku() {
+        return buku;
+    }
+
+    public void setBuku(Buku buku) {
+        this.buku = buku;
     }
 
     public String getTglPinjam() {
         return tglPinjam;
     }
 
-    public String getTglKembali() {
-        return tglKembali;
-    }
-
-    public void setNobp(String nobp) {
-        this.nobp = nobp;
-    }
-
-    public void setKodeBuku(String kodeBuku) {
-        this.kodeBuku = kodeBuku;
-    }
-
     public void setTglPinjam(String tglPinjam) {
         this.tglPinjam = tglPinjam;
+    }
+
+    public String getTglKembali() {
+        return tglKembali;
     }
 
     public void setTglKembali(String tglKembali) {
         this.tglKembali = tglKembali;
     }
+    
 }

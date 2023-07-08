@@ -31,4 +31,21 @@ public class DatabaseHelper {
         }
         return connection;
     }
+    
+    public static void main(String [] args ){
+        try {
+            connection = DatabaseHelper.getConnection();
+            Anggota anggota = new Anggota ();
+            anggota.setNobp("98312111");
+            anggota.setNama("Ali");
+            anggota.setAlamat("Paris");
+            anggota.setJenisKelamin("L");
+            AnggotaDao dao = new AnggotaDaoImpl(connection);
+            dao.insert(anggota);
+            JOptionPane.showMessageDialog(null, "Entri Ok");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+            Logger.getLogger(DatabaseHelper.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
